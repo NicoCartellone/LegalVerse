@@ -1,0 +1,19 @@
+.imgBackground {
+  background-image: url(../../assets//homeGeneral.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 94vh;
+  position: absolute;
+  backdrop-filter: blur(10px);
+}
+
+.cardContainerHome {
+  text-align: center;
+  padding: 20px;
+  border: 3px solid #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 25px #222;
+  backdrop-filter: blur(20px);
+}
