@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import { UserContext } from "../../context/UserProvider";
+import withAuth from "../../utils/withAuth";
 
 const HomeClientes = () => {
-  const { logOutAbogado } = useContext(UserContext);
   return (
     <div>
-      <h1>HomeAbogados</h1>
-      <button onClick={() => logOutAbogado()}>logout</button>
+      <h1>Home Clientes</h1>
     </div>
   );
 };
-export default HomeClientes;
+export default withAuth(HomeClientes);

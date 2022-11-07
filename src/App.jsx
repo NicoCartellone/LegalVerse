@@ -9,8 +9,7 @@ import {
   Register,
 } from "./pages/index.js";
 import NavBarGeneral from "./components/NavBarGeneral";
-import LayaoutRequireAuthClientes from "./components/LayoutRequireAuthClientes.jsx";
-import LayoutRequireAuthAbogados from "./components/LayoutRequireAuthAbogados.jsx";
+import LayaoutRequireAuth from "./components/LayoutRequireAuthClientes.jsx";
 
 function App() {
   return (
@@ -18,16 +17,12 @@ function App() {
       <NavBarGeneral />
       <Routes>
         <Route path="/*" element={<NotFound />} />
-        <Route path="/" element={<LayaoutRequireAuthClientes />}>
-          <Route path="/clientes/home" element={<HomeClientes />} />
-        </Route>
-        <Route path="/" element={<LayoutRequireAuthAbogados />}>
-          <Route path="/abogados/home" element={<HomeAbogados />} />
-        </Route>
 
-        <Route index element={<HomeGeneral />} />
+        <Route path="/" element={<HomeGeneral />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/abogados/home" element={<HomeAbogados />} />
+        <Route path="/clientes/home" element={<HomeClientes />} />
       </Routes>
     </>
   );

@@ -1,0 +1,28 @@
+.ofertas,
+.revisarContratos {
+  text-align: center;
+  padding-top: 20px;
+  align-items: center;
+  align-content: center;
+}
+.grillaOfertas {
+  text-align: center;
+  padding: 50px;
+  align-items: center;
+  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 0px;
+}
+.ofertas h1,
+.revisarContratos h1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+.ofertas h5 {
+  text-align: center;
+  font-size: 18px;
+}

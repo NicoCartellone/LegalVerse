@@ -1,0 +1,34 @@
+.backgroundphoto{
+    padding: 150px 100px 100px 100px ;
+    height: 100vh; /*vh stands for viewport-height altura de la ventana gráfica*/
+    background-image: url(../../assets//homeGeneral.png); 
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .cardContainerHome {
+    text-align: center;
+    padding: 20px;
+    border: 3px solid #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #222;
+    backdrop-filter: blur(20px);
+  
+  } 
+  .aboutUs {
+    padding-top: 90px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 0px;
+   
+    }
+  
+    .cajaDatos {
+      background-color: #C9D4FF;
+      text-align: center;
+      padding-left:50px;
+      padding-right:50px;
+      padding-top:20px;
+      }

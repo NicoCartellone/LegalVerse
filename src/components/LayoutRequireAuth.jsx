@@ -1,20 +1,19 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
-import { HomeAbogados } from "../pages";
+import { HomeClientes } from "../pages";
 
-const LayoutRequireAuthAbogados = () => {
+const LayaoutRequireAuth = () => {
   const { userData } = useContext(UserContext);
-  console.log(userData);
 
-  if (userData.rol !== "abogado") {
+  if (!userData.rol == "cliente") {
     return <Navigate to="/login" />;
   }
 
   return (
     <div className="container mx-auto">
-      <HomeAbogados />
+      <HomeClientes />
     </div>
   );
 };
-export default LayoutRequireAuthAbogados;
+export default LayaoutRequireAuth;

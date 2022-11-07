@@ -1,17 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
+import { HomeClientes } from "../pages";
 
 const LayaoutRequireAuth = () => {
-  const { userCliente } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
 
-  if (!userCliente) {
+  if (userData.rol !== "cliente") {
     return <Navigate to="/login" />;
   }
 
   return (
     <div className="container mx-auto">
-      <Outlet />
+      <HomeClientes />
     </div>
   );
 };

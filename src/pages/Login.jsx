@@ -9,12 +9,20 @@ const Login = () => {
     <div className="container text-center">
       <div className="row justify-content-center">
         <div className="col-4">
-          <h1>Registro</h1>
-          <Button onClick={() => setSwitchForm(true)} variant="primary">
+          <h1>Login</h1>
+          <Button
+            className="m-1"
+            onClick={() => setSwitchForm(true)}
+            variant="primary"
+          >
             Cliente
           </Button>
 
-          <Button onClick={() => setSwitchForm(false)} variant="primary">
+          <Button
+            className="m-1"
+            onClick={() => setSwitchForm(false)}
+            variant="primary"
+          >
             Abogado
           </Button>
           {switchForm ? <LoginClientes /> : <LoginAbogados />}

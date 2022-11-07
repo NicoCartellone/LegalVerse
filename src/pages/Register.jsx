@@ -10,11 +10,19 @@ const Register = () => {
       <div className="row justify-content-center">
         <div className="col-4">
           <h1>Registro</h1>
-          <Button onClick={() => setSwitchForm(true)} variant="primary">
+          <Button
+            className="m-1"
+            onClick={() => setSwitchForm(true)}
+            variant="primary"
+          >
             Cliente
           </Button>
 
-          <Button onClick={() => setSwitchForm(false)} variant="primary">
+          <Button
+            className="m-1"
+            onClick={() => setSwitchForm(false)}
+            variant="primary"
+          >
             Abogado
           </Button>
           {switchForm ? <RegisterClientes /> : <RegisterAbogados />}
