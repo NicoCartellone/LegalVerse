@@ -17,7 +17,7 @@ const Register = () => {
             onClick={() => setSwitchForm(true)}
             style={{ background: `${switchForm ? selected : colorDisabled}` }}
           >
-            Cliente
+            Persona Fisica
           </Button>
 
           <Button
@@ -25,7 +25,7 @@ const Register = () => {
             onClick={() => setSwitchForm(false)}
             style={{ background: `${switchForm ? colorDisabled : selected}` }}
           >
-            Abogado
+            Persona Juridica
           </Button>
           <RegisterClientes switchForm={switchForm} />
         </div>

@@ -1,15 +1,15 @@
 import "../styles/asistencia.css";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
 import Container from "react-bootstrap/Container";
-
 import { Formik } from "formik";
 import * as Yup from "yup";
-
 import { useFirestore } from "../../hooks/useFirestore";
+import Toast from "react-bootstrap/Toast";
+
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const schemaForm = Yup.object().shape({
   tipodepedido: Yup.string().required(),
@@ -17,13 +17,29 @@ const schemaForm = Yup.object().shape({
 });
 
 const Asistencia = () => {
+  const [show, setShow] = useState(false);
+
   const { addAsistecia } = useFirestore();
 
   const handleSubmit = (values) => {
     addAsistecia(values.tipodepedido, values.descripcion);
+    setShow(true);
   };
   return (
     <Container>
+      <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+        <Toast.Header
+          style={{
+            backgroundColor: "green",
+            color: "white",
+          }}
+        >
+          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+          <strong className="me-auto">LegalVerse</strong>
+        </Toast.Header>
+        <Toast.Body>Un abogado recibirá tu pedidio!</Toast.Body>
+      </Toast>
+
       <div className="asistencia-textos">
         <h1>Pedido de asistencia a un abogado</h1>
         <p>Obtendra respuesta dentro de las próximas 24 a 48 horas</p>

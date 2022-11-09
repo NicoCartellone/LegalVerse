@@ -1,0 +1,33 @@
+.firma-textos {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  align-items: center;
+  align-content: center;
+}
+
+.firma-textos h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+.firma-textos p {
+  font-size: 20px;
+  padding-top: 15px;
+}
+
+.firma-documentos {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  align-items: center;
+  align-content: center;
+}
+.firma-documentos button {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #000d41;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+}

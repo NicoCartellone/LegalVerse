@@ -1,0 +1,52 @@
+.documentos-textos {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  align-items: center;
+  align-content: center;
+}
+
+.documentos-textos h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+.documentos-textos p {
+  font-size: 20px;
+  padding-top: 15px;
+}
+.documentos-textos button {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #000d41;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  transition: all 300ms ease 0ms;
+  z-index: 99;
+}
+
+.buscador {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-items: center;
+  align-content: center;
+}
+
+.buscador input {
+  width: 60%;
+  padding: 5px;
+  border-radius: 10px;
+}
+.buscador button {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #000d41;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
