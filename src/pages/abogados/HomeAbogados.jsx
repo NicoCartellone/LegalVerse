@@ -1,12 +1,17 @@
-import { UserContext } from "../../context/UserProvider";
 import withAuth from "../../utils/withAuth";
-import { useContext } from "react";
+import { useEffect } from "react";
 import PantallaPrincipal from "../../components/PantallaPrincipal";
 import "../styles/homeAbogados.css";
 import { Oferta } from "../../components/abogados/Oferta";
 
+import { useFirestore } from "../../hooks/useFirestore";
+
 const HomeAbogados = () => {
-  const { logOutAbogado } = useContext(UserContext);
+  const { getAllAsistencia, asistencia } = useFirestore();
+
+  useEffect(() => {
+    getAllAsistencia();
+  }, []);
 
   return (
     <>
@@ -14,32 +19,16 @@ const HomeAbogados = () => {
       <div className="ofertas">
         <h1>Ofertas</h1>
         <h5>Revise las ofertas dentro de las últimas 24 horas</h5>
-        <div className="grillaOfertas">
-          <Oferta
-            tipo="Tipo de oferta"
-            solicitante="Carla Lopez"
-            texto="Lorem ipsum"
-            fecha="10/10"
-          />
-          <Oferta
-            tipo="Tipo de oferta"
-            solicitante="Carla Lopez"
-            texto="Lorem ipsum"
-            fecha="10/10"
-          />
-          <Oferta
-            tipo="Tipo de oferta"
-            solicitante="Carla Lopez"
-            texto="Lorem ipsum"
-            fecha="10/10"
-          />
-          <Oferta
-            tipo="Tipo de oferta"
-            solicitante="Carla Lopez"
-            texto="Lorem ipsum"
-            fecha="10/10"
-          />
-        </div>
+        {asistencia.map((item) => (
+          <div className="grillaOfertas" key={item.id}>
+            <Oferta
+              tipo={item.tipodepedido}
+              solicitante={item.nombre}
+              texto={item.descripcion}
+              fecha={item.fecha}
+            />
+          </div>
+        ))}
       </div>
       <div className="revisarContratos">
         <h1>Revisar contratos</h1>

@@ -1,4 +1,4 @@
-import { uploadBytes, ref } from "firebase/storage";
+import { uploadBytes, ref, listAll, getDownloadURL } from "firebase/storage";
 import { useRef } from "react";
 import { storage, auth } from "../../firebase";
 
@@ -11,12 +11,24 @@ const Documentos = () => {
     }
   };
 
+  const getAllFiles = async () => {
+    const listFileRef = ref(storage, `files/${auth.currentUser.uid}`);
+    const allFiles = await listAll(listFileRef);
+    for (let item of allFiles.items) {
+      const fileName = item.name;
+      console.log(fileName);
+      const url = await getDownloadURL(item);
+      console.log(url);
+    }
+  };
+
   const handleChangeFile = async (e) => {
     const file = e.target.files[0];
-    const fileName = file.nombre;
+    const fileName = file.name;
     const fileRef = ref(storage, `files/${auth.currentUser.uid}/${fileName}`);
-    const fileUpload = await uploadBytes(fileRef, file);
-    console.log(fileUpload);
+    await uploadBytes(fileRef, file);
+    const url = await getDownloadURL(fileRef);
+    console.log(url);
   };
 
   return (
@@ -30,6 +42,7 @@ const Documentos = () => {
         style={{ display: "none" }}
         onChange={handleChangeFile}
       />
+      <button onClick={getAllFiles}>Get Files</button>
     </div>
   );
 };
