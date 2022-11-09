@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -29,7 +30,9 @@ const LoginClientes = () => {
   };
 
   return loading ? (
-    <h1>Cargando...</h1>
+    <Spinner animation="border" role="status">
+      <span className="visually-hidden">Cargando...</span>
+    </Spinner>
   ) : (
     <div className="mt-5">
       <Formik

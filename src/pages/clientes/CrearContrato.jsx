@@ -1,5 +1,6 @@
 import "../styles/crearContrato.css";
 import Button from "react-bootstrap/Button";
+import withAuth from "../../utils/withAuth";
 
 const CrearContrato = () => {
   return (
@@ -17,4 +18,4 @@ const CrearContrato = () => {
     </>
   );
 };
-export default CrearContrato;
+export default withAuth(CrearContrato);

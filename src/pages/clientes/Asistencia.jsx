@@ -11,6 +11,8 @@ import Toast from "react-bootstrap/Toast";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
+import withAuth from "../../utils/withAuth";
+
 const schemaForm = Yup.object().shape({
   tipodepedido: Yup.string().required(),
   descripcion: Yup.string().required(),
@@ -101,4 +103,4 @@ const Asistencia = () => {
     </Container>
   );
 };
-export default Asistencia;
+export default withAuth(Asistencia);

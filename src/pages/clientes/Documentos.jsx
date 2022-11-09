@@ -2,6 +2,7 @@ import { uploadBytes, ref, listAll, getDownloadURL } from "firebase/storage";
 import { useRef, useState } from "react";
 import { storage, auth } from "../../firebase";
 import "../styles/documentos.css";
+import withAuth from "../../utils/withAuth";
 
 const Documentos = () => {
   const fileRef = useRef();
@@ -69,4 +70,4 @@ const Documentos = () => {
     </div>
   );
 };
-export default Documentos;
+export default withAuth(Documentos);

@@ -1,6 +1,7 @@
 import "../styles/firmaDigital.css";
 import Toast from "react-bootstrap/Toast";
 import { useEffect, useState } from "react";
+import withAuth from "../../utils/withAuth";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -44,4 +45,4 @@ const FirmaDigital = () => {
     </div>
   );
 };
-export default FirmaDigital;
+export default withAuth(FirmaDigital);
