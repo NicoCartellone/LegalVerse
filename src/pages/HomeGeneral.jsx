@@ -1,6 +1,8 @@
 import "../pages/styles/homeGeneralStyles.css";
 import Container from "react-bootstrap/Container";
 import PantallaPrincipal from "../components/PantallaPrincipal";
+import logop1 from "../assets/LOGOP1.png";
+import Stack from "react-bootstrap/Stack";
 
 const HomeGeneral = () => {
   return (
@@ -65,18 +67,20 @@ const HomeGeneral = () => {
         </Container>
       </div>
       <footer className="bg-light text-center text-lg-start">
-        <div className="container p-4">
-          <div className="row">
-            <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
-              <h5 className="text-uppercase">Contactanos</h5>
+        <Stack direction="horizontal" gap={2}>
+          <div className="container p-4">
+            <div className="row">
+              <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 className="text-uppercase">Contactanos</h5>
 
-              <p>contacto@legalverse.com.ar</p>
-              <p>+54 9 11 7859 0087</p>
-              <p>Buenos Aires, Argentina</p>
+                <p>contacto@legalverse.com.ar</p>
+                <p>+54 9 11 7859 0087</p>
+                <p>Buenos Aires, Argentina</p>
+              </div>
             </div>
           </div>
-        </div>
-
+          <img className="logo1" src={logop1} />
+        </Stack>
         <div className="text-center p-3">© 2022 Copyright</div>
       </footer>
     </>

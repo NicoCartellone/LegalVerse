@@ -10,7 +10,7 @@ const CrearContrato = () => {
         <p>Creá tu primer contrato haciendo click en el siguiente botón</p>
         <Button
           target="_blank"
-          href="https://docs.google.com/forms/d/e/1FAIpQLScgg92Uk03vwv3wPddXiZkL_nieUbhjZZiTOx0UhnenJ9PMaA/viewform?usp=sharing"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSc8s8N_4OxP2L9BjEEy9ub73SXpw5knuN5IrX33gIpbp7SFJw/viewform"
         >
           Crear
         </Button>

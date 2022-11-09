@@ -1,15 +1,20 @@
 import "../pages/styles/pantallaPrincipal.css";
 import logop1 from "../assets/LOGOP1.png";
-import Container from "react-bootstrap/Container";
+import Stack from "react-bootstrap/Stack";
 
 const PantallaPrincipal = () => {
   return (
     <>
       <div className="backgroundphoto">
-        <img className="logo1" src={logop1} />
-
-        <div className="cardContainerHome">
-          <h1 className="h1 text-light">El mundo de las leyes, reinventado</h1>
+        <div className="d-flex justify-content-center">
+          <Stack direction="horizontal" gap={2}>
+            <div className="cardContainerHome">
+              <h1 className="h1 text-light">
+                El mundo de las leyes, reinventado
+              </h1>
+            </div>
+            <img className="logo1" src={logop1} />
+          </Stack>
         </div>
 
         <div className="aboutUs">

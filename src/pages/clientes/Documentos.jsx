@@ -1,16 +1,23 @@
 import { uploadBytes, ref, listAll, getDownloadURL } from "firebase/storage";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { storage, auth } from "../../firebase";
 import "../styles/documentos.css";
 import withAuth from "../../utils/withAuth";
+import imgPDF from "../../assets/pdf.png";
 
 const Documentos = () => {
   const fileRef = useRef();
 
-  const initialValues = [{ name: "", url: "" }];
-  const [dataPdf, setDataPdf] = useState(initialValues);
+  const [getData, setGetData] = useState(true);
+  const [dataPdf, setDataPdf] = useState([]);
 
-  console.log(dataPdf);
+  useEffect(() => {
+    if (getData) {
+      getAllFiles();
+    }
+  }, [getData]);
+
+  console.log("state", dataPdf);
 
   const handleOpenFilePicker = () => {
     if (fileRef.current) {
@@ -21,20 +28,29 @@ const Documentos = () => {
   const getAllFiles = async () => {
     const listFileRef = ref(storage, `files/${auth.currentUser.uid}`);
     const allFiles = await listAll(listFileRef);
-    for (let item of allFiles.items) {
+    const result = allFiles.items.map((item) => {
       const fileName = item.name;
-      const url = await getDownloadURL(item);
-      setDataPdf([{ ...dataPdf, name: fileName, url: url }]);
-    }
+      return { name: fileName };
+    });
+    setDataPdf(result);
+    setGetData(false);
   };
 
   const handleChangeFile = async (e) => {
     const file = e.target.files[0];
     const fileName = file.name;
     const fileRef = ref(storage, `files/${auth.currentUser.uid}/${fileName}`);
-    await uploadBytes(fileRef, file);
-    const url = await getDownloadURL(fileRef);
+    const res = await uploadBytes(fileRef, file);
+    if (res) {
+      setGetData(true);
+    }
+  };
+
+  const getUrl = async (name) => {
+    const listFileRef = ref(storage, `files/${auth.currentUser.uid}/${name}`);
+    const url = await getDownloadURL(listFileRef);
     console.log(url);
+    window.open(url, "_blank");
   };
 
   return (
@@ -59,12 +75,14 @@ const Documentos = () => {
         <input type="text" placeholder="Buscar entre tus documentos" />{" "}
         <button> Buscar </button>
         <div>
-          {dataPdf.map((item) => (
-            <div key={item.url}>
-              <p>{item.name}</p>
-              <p>{item.ulr}</p>
-            </div>
-          ))}
+          {dataPdf.length &&
+            !getData &&
+            dataPdf.map((item, i) => (
+              <div key={i} onClick={() => getUrl(item.name)}>
+                <img src={imgPDF} alt={item.name} />
+                <p>{item.name}</p>
+              </div>
+            ))}
         </div>
       </div>
     </div>
