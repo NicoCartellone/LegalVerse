@@ -1,5 +1,5 @@
 .backgroundphoto{
-    padding: 150px 100px 100px 100px ;
+    padding: 10px 100px 100px 100px ;
     max-height: 100%; /*vh stands for viewport-height altura de la ventana gráfica*/
     background-image: url(../../assets//homeGeneral.png); 
     background-repeat: no-repeat;
@@ -13,6 +13,19 @@
     border-radius: 15px;
     box-shadow: 0 0 25px #222;
     backdrop-filter: blur(20px);
+  
+  } 
+
+  .logo1 {
+    max-height: 400px;
+    max-width: 400px;
+    align-items: right;
+    text-align: right;
+    margin-left: auto;
+ display: block;
+    
+    
+    
   
   } 
   .aboutUs {

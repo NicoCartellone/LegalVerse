@@ -1,11 +1,16 @@
 import "../pages/styles/pantallaPrincipal.css";
-
+import logop1 from "../assets/LOGOP1.png"
 
 const PantallaPrincipal = () => {
     return <>
      <div className= "backgroundphoto">
+     <img  className="logo1" src={logop1}/>
+      <div className="logoytexto">
+    
       <div className="cardContainerHome">
         <h1 className="h1 text-light">El mundo de las leyes, reinventado</h1>
+      </div>
+  
       </div>
       <div className="aboutUs">
         <div className="cajaDatos">

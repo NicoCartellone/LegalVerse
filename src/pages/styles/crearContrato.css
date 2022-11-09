@@ -1,0 +1,21 @@
+ .contratos-textos {
+    
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    align-items: center;
+    align-content: center;
+    
+  } 
+
+  .contratos-textos h1 {
+    font-size:50px;
+    font-weight: 700;
+    
+  }
+  .contratos-textos p{
+    font-size:20px;
+    padding-top: 15px;
+
+    
+  }
