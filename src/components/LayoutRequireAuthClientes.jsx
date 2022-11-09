@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
 import { HomeClientes } from "../pages";
 
-const LayaoutRequireAuth = () => {
-  const { userData } = useContext(UserContext);
+const LayaoutRequireAuthClientes = () => {
+  const { user } = useContext(UserContext);
 
-  if (userData.rol !== "cliente") {
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
@@ -16,4 +16,4 @@ const LayaoutRequireAuth = () => {
     </div>
   );
 };
-export default LayaoutRequireAuth;
+export default LayaoutRequireAuthClientes;

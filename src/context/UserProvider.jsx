@@ -10,21 +10,22 @@ import { getDoc, setDoc, doc } from "firebase/firestore/lite";
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(false);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setUser(true);
-        setUserData({
-          email: user.email,
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL,
-        });
+        const getData = await getUserDocument(user);
+        if (getData) {
+          setUser(true);
+          setUserData(getData);
+          setLoading(false);
+        }
       } else {
         setUser(false);
-        setUserData({});
+        setUserData(false);
+        setLoading(false);
       }
     });
   }, [user]);
@@ -54,6 +55,7 @@ const UserProvider = ({ children }) => {
           uid: user.uid,
           displayName: nombre,
           photoURL: user.photoURL,
+          rol: rol,
         });
       }
     } catch (error) {
@@ -79,6 +81,8 @@ const UserProvider = ({ children }) => {
         signOutUser,
         userData,
         setUserData,
+        setLoading,
+        loading,
       }}
     >
       {children}
@@ -88,3 +92,17 @@ const UserProvider = ({ children }) => {
 export default UserProvider;
 
 export const UserContext = createContext();
+
+const getUserDocument = async (user) => {
+  if (!user.uid) return null;
+
+  try {
+    const docRef = doc(db, "users", user.uid);
+    const userDocument = await getDoc(docRef).then((doc) => {
+      return doc.data();
+    });
+    return userDocument;
+  } catch (error) {
+    console.error("Error fetching user", error);
+  }
+};

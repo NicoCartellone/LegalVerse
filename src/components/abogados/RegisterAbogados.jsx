@@ -28,7 +28,7 @@ const RegisterAbogados = () => {
       values.nombreCompleto,
       "abogado"
     );
-    navegate("/abogados/home");
+    navegate("/login");
   };
   return (
     <div>

@@ -4,16 +4,15 @@ import { UserContext } from "../context/UserProvider";
 import { HomeAbogados } from "../pages";
 
 const LayoutRequireAuthAbogados = () => {
-  const { userData } = useContext(UserContext);
-  console.log(userData);
+  const { user } = useContext(UserContext);
 
-  if (userData.rol !== "abogado") {
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
   return (
     <div className="container mx-auto">
-      <HomeAbogados />
+      <Outlet />
     </div>
   );
 };

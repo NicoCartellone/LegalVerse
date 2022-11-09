@@ -74,7 +74,7 @@ const LoginAbogados = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" onClick={handleSubmit}>
               Iniciar Sesión
             </Button>
           </Form>

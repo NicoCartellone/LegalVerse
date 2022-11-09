@@ -15,11 +15,11 @@ function withAuth(Component) {
    * Check if shop user is authenticated
    */
   const Auth = (props) => {
-    const { user } = useContext(UserContext);
+    const { userData } = useContext(UserContext);
     const loading = <h1>loading</h1>;
     // If user is logged in, return original component
     return useMemo(() => {
-      return user ? (
+      return userData ? (
         <Suspense fallback={loading}>
           {/* <NavBarComponent /> */}
           <Component {...props} />
@@ -27,7 +27,7 @@ function withAuth(Component) {
       ) : (
         <Login />
       );
-    }, [user, props]);
+    }, [userData, props]);
   };
 
   // Copy getInitial props so it will run as well

@@ -14,7 +14,6 @@ import {
   FirmaDigital,
 } from "./pages/index.js";
 import NavBarGeneral from "./components/NavBarGeneral";
-import LayaoutRequireAuth from "./components/LayoutRequireAuthClientes.jsx";
 
 function App() {
   return (

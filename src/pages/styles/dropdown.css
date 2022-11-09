@@ -1,0 +1,9 @@
+.containerNavItems {
+  display: flex;
+  flex-flow: column;
+}
+
+.containerNavItems .btn {
+  width: 100%;
+  margin-bottom: 0.2rem;
+}

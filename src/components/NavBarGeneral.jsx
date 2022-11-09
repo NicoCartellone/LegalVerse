@@ -12,8 +12,12 @@ import { Stack } from "react-bootstrap";
 import { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
 
+import "../pages/styles/dropdown.css";
+
 const NavBarGeneral = () => {
-  const { user, signOutUser, userData } = useContext(UserContext);
+  const { signOutUser, userData } = useContext(UserContext);
+  const rol = userData.rol;
+  const showClient = rol === 0 ? true : false;
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -24,7 +28,7 @@ const NavBarGeneral = () => {
         </NavLink>
 
         <Stack direction="horizontal" gap={2}>
-          {!user ? (
+          {!userData ? (
             <>
               <NavLink
                 to="/login"
@@ -41,32 +45,66 @@ const NavBarGeneral = () => {
             </>
           ) : (
             <>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                  <NavDropdown title={userData.email} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/clientes/home">
-                      Inicio
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/clientes/asistencia">
-                      Asistencia
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/clientes/crear-contrato">
-                      Crear Contrato
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/clientes/documentos">
-                      Documentos
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/clientes/firma-digital">
-                      Firma Digital
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={signOutUser}>
-                      Cerra Sesión
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </Navbar.Collapse>
+              {showClient ? (
+                <>
+                  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                  <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                      <NavDropdown
+                        title={userData.email}
+                        id="basic-nav-dropdown"
+                      >
+                        <div className="containerNavItems">
+                          <NavLink to="/clientes/home">
+                            <Button variant="light">Inicio</Button>
+                          </NavLink>
+                          <NavLink to="/clientes/asistencia">
+                            <Button variant="light">Asistencia</Button>
+                          </NavLink>
+                          <NavLink to="/clientes/crear-contrato">
+                            <Button variant="light">Crear Contrato</Button>
+                          </NavLink>
+                          <NavLink to="/clientes/documentos">
+                            <Button variant="light"> Documentos</Button>
+                          </NavLink>
+                          <NavLink to="/clientes/firma-digital">
+                            <Button variant="light"> Firma Digital</Button>
+                          </NavLink>
+                          <NavDropdown.Divider />
+                          <NavDropdown.Item onClick={signOutUser}>
+                            Cerrar Sesión
+                          </NavDropdown.Item>
+                        </div>
+                      </NavDropdown>
+                    </Nav>
+                  </Navbar.Collapse>
+                </>
+              ) : (
+                <>
+                  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                  <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                      <NavDropdown
+                        title={userData.email}
+                        id="basic-nav-dropdown"
+                      >
+                        <div className="containerNavItems">
+                          <NavLink to="/abogados/home">
+                            <Button variant="light">Inicio</Button>
+                          </NavLink>
+                          <NavLink to="/abogados/ofertas">
+                            <Button variant="light">Ofertas</Button>
+                          </NavLink>
+                          <NavDropdown.Divider />
+                          <NavDropdown.Item onClick={signOutUser}>
+                            Cerrar Sesión
+                          </NavDropdown.Item>
+                        </div>
+                      </NavDropdown>
+                    </Nav>
+                  </Navbar.Collapse>
+                </>
+              )}
             </>
           )}
         </Stack>

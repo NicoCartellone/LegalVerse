@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 
 const Login = () => {
   const [switchForm, setSwitchForm] = useState(true);
+  const colorDisabled = "#ccc";
+  const selected = "#0d6efd";
   return (
     <div className="container text-center">
       <div className="row justify-content-center">
@@ -13,7 +15,7 @@ const Login = () => {
           <Button
             className="m-1"
             onClick={() => setSwitchForm(true)}
-            variant="primary"
+            style={{ background: `${switchForm ? selected : colorDisabled}` }}
           >
             Cliente
           </Button>
@@ -21,11 +23,11 @@ const Login = () => {
           <Button
             className="m-1"
             onClick={() => setSwitchForm(false)}
-            variant="primary"
+            style={{ background: `${switchForm ? colorDisabled : selected}` }}
           >
             Abogado
           </Button>
-          {switchForm ? <LoginClientes /> : <LoginAbogados />}
+          <LoginClientes switchForm={switchForm} />
         </div>
       </div>
     </div>

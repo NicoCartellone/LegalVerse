@@ -14,20 +14,23 @@ const schemaForm = Yup.object().shape({
 });
 
 const LoginClientes = () => {
-  const { loginUser, user } = useContext(UserContext);
+  const { loginUser, userData, loading, setLoading } = useContext(UserContext);
   const navegate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (userData) {
       navegate("/clientes/home");
     }
-  }, [user]);
+  }, [userData]);
 
   const handleSubmit = (values) => {
+    setLoading(true);
     loginUser(values.email, values.password);
   };
 
-  return (
+  return loading ? (
+    <h1>Cargando...</h1>
+  ) : (
     <div className="mt-5">
       <h1>Login Clientes</h1>
       <Formik

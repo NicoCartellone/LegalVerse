@@ -5,7 +5,7 @@ import withAuth from "../../utils/withAuth";
 const HomeClientes = () => {
   return (
     <div>
-      <h1>Home Clientes</h1>
+      <h1 style={{ backgroundColor: "red" }}>Home Clientes</h1>
     </div>
   );
 };

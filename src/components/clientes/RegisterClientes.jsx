@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -17,22 +17,31 @@ const schemaForm = Yup.object().shape({
     .oneOf([Yup.ref("password")]),
 });
 
-const RegisterClientes = () => {
-  const { registerUser } = useContext(UserContext);
+const RegisterClientes = ({ switchForm }) => {
+  const { registerUser, userData, loading, setLoading } =
+    useContext(UserContext);
   const navegate = useNavigate();
 
+  useEffect(() => {
+    if (userData) {
+      navegate("/clientes/home");
+    }
+  }, [userData]);
+
   const handleSubmit = (values) => {
+    setLoading(true);
     registerUser(
       values.email,
       values.password,
       values.nombreCompleto,
-      "cliente"
+      switchForm === true ? 0 : 1
     );
     navegate("/login");
   };
-  return (
+  return loading ? (
+    <h1>Cargando...</h1>
+  ) : (
     <div>
-      <h1>Registro clientes</h1>
       <Formik
         validationSchema={schemaForm}
         onSubmit={handleSubmit}
