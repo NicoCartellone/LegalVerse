@@ -1,0 +1,33 @@
+.asistencia-textos {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    align-items: center;
+    align-content: center;
+    
+  }
+  .asistencia-textos h1 {
+    font-size:50px;
+    font-weight: 700;
+    
+  }
+  .asistencia-textos p{
+    font-size:20px;
+    padding-top: 15px;
+
+    
+  }
+  .pre-form{
+    padding: 50px;
+    
+
+    
+  }
+  .formulario{
+    padding: 20px;
+    background-color:#C9D4FF ;
+    box-sizing: border-box;
+    border-radius: 40px;
+
+    
+  }

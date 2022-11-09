@@ -1,4 +1,4 @@
-import "../pages/styles/pantallaprincipal.css";
+import "../pages/styles/pantallaPrincipal.css";
 
 
 const PantallaPrincipal = () => {

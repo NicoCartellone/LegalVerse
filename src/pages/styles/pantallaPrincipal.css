@@ -1,11 +1,11 @@
 .backgroundphoto{
     padding: 150px 100px 100px 100px ;
-    height: 100vh; /*vh stands for viewport-height altura de la ventana gráfica*/
+    max-height: 100%; /*vh stands for viewport-height altura de la ventana gráfica*/
     background-image: url(../../assets//homeGeneral.png); 
     background-repeat: no-repeat;
     background-size: cover;
   }
-  
+ 
   .cardContainerHome {
     text-align: center;
     padding: 20px;
@@ -24,11 +24,14 @@
     grid-row-gap: 0px;
    
     }
-  
+
     .cajaDatos {
       background-color: #C9D4FF;
       text-align: center;
       padding-left:50px;
       padding-right:50px;
       padding-top:20px;
+      padding-bottom: 10px;
+      max-height: 100%;
+      max-width: 100%;
       }
