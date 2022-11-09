@@ -19,7 +19,7 @@ const LoginClientes = () => {
 
   useEffect(() => {
     if (userData) {
-      navegate("/clientes/home");
+      navegate("/");
     }
   }, [userData]);
 
@@ -32,7 +32,6 @@ const LoginClientes = () => {
     <h1>Cargando...</h1>
   ) : (
     <div className="mt-5">
-      <h1>Login Clientes</h1>
       <Formik
         validationSchema={schemaForm}
         onSubmit={handleSubmit}

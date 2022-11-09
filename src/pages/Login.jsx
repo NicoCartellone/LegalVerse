@@ -11,8 +11,8 @@ const Login = () => {
     <div className="container text-center">
       <div className="row justify-content-center">
         <div className="col-4">
-          <h1>Login</h1>
-          <Button
+          <h1>Iniciar Sesión</h1>
+          {/* <Button
             className="m-1"
             onClick={() => setSwitchForm(true)}
             style={{ background: `${switchForm ? selected : colorDisabled}` }}
@@ -26,7 +26,7 @@ const Login = () => {
             style={{ background: `${switchForm ? colorDisabled : selected}` }}
           >
             Abogado
-          </Button>
+          </Button> */}
           <LoginClientes switchForm={switchForm} />
         </div>
       </div>
