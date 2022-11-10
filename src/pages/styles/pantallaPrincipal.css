@@ -1,7 +1,7 @@
 .backgroundphoto {
   padding: 10px 100px 100px 100px;
-  height: 1200px; /*vh stands for viewport-height altura de la ventana gráfica*/
-  background-image: url(../../assets//homeGeneral.png);
+  height: 1100px; /*vh stands for viewport-height altura de la ventana gráfica*/
+  background-image: url(../../assets//legalverse2.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -13,6 +13,7 @@
   border-radius: 15px;
   box-shadow: 0 0 25px #222;
   backdrop-filter: blur(20px);
+  color: #000d41;
 }
 
 .logo1 {
@@ -48,7 +49,7 @@
   }
   .backgroundphoto {
     height: 100%; /*vh stands for viewport-height altura de la ventana gráfica*/
-    background-image: url(../../assets//homeGeneral.png);
+    background-image: url(../../assets//legalverse2.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
   }
