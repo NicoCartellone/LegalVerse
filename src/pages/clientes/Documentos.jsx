@@ -4,20 +4,40 @@ import { storage, auth } from "../../firebase";
 import "../styles/documentos.css";
 import withAuth from "../../utils/withAuth";
 import imgPDF from "../../assets/pdf.png";
+import Stack from "react-bootstrap/Stack";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
+import { Formik } from "formik";
+
+import Modal from "react-bootstrap/Modal";
 
 const Documentos = () => {
   const fileRef = useRef();
 
   const [getData, setGetData] = useState(true);
   const [dataPdf, setDataPdf] = useState([]);
+  const [filteredName, setFilteredName] = useState([]);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  // const resultado = dataPdf.filter(
+  //   (data) => data.name === "Trabajo Práctico Integrador.pdf"
+  // );
+  // resultado.map((item) => {
+  //   console.log(item.name);
+  // });
 
   useEffect(() => {
     if (getData) {
       getAllFiles();
     }
   }, [getData]);
-
-  console.log("state", dataPdf);
 
   const handleOpenFilePicker = () => {
     if (fileRef.current) {
@@ -49,16 +69,25 @@ const Documentos = () => {
   const getUrl = async (name) => {
     const listFileRef = ref(storage, `files/${auth.currentUser.uid}/${name}`);
     const url = await getDownloadURL(listFileRef);
-    console.log(url);
     window.open(url, "_blank");
   };
 
+  // const searchFilter = (values) => {
+  //   if (values) {
+  //     const newData = dataPdf.filter((item) => {
+  //       const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
+  //       const textData = values.search.toUpperCase();
+  //       return itemData.indexOf(textData);
+  //     });
+  //     setFilteredName(newData);
+  //     setSearch(text);
+  //   } else {
+  //     setFilteredName(dataPdf);
+  //   }
+  // };
+
   return (
     <div>
-      <div className="get">
-        <button onClick={getAllFiles}>Get Files</button>
-      </div>
-
       <div className="documentos-textos">
         <h1>Gestión de Documentos</h1>
         <button onClick={handleOpenFilePicker}>Subir archivo</button>
@@ -72,18 +101,67 @@ const Documentos = () => {
       </div>
 
       <div className="buscador">
-        <input type="text" placeholder="Buscar entre tus documentos" />{" "}
-        <button> Buscar </button>
-        <div>
+        <Stack
+          direction="horizontal"
+          gap={2}
+          className="d-flex justify-content-center"
+        >
+          <Formik
+            initialValues={{
+              search: "",
+            }}
+          >
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              touched,
+              isValid,
+              errors,
+            }) => (
+              <input
+                type="text"
+                name="search"
+                placeholder="Buscar entre tus documentos"
+                value={values.search}
+                onChange={handleChange("search")}
+                onBlur={handleBlur("search")}
+              />
+            )}
+          </Formik>
+          <button className="btn-buscar"> Buscar </button>
+        </Stack>
+        <Stack
+          direction="horizontal"
+          gap={5}
+          className="d-flex justify-content-center p-5"
+        >
           {dataPdf.length &&
             !getData &&
             dataPdf.map((item, i) => (
-              <div key={i} onClick={() => getUrl(item.name)}>
-                <img src={imgPDF} alt={item.name} />
-                <p>{item.name}</p>
+              <div key={i}>
+                <Row xs={1} md={2} className="g-1">
+                  <Col>
+                    <Card style={{ width: "18rem" }}>
+                      <Button
+                        variant="primary"
+                        onClick={() => getUrl(item.name)}
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={imgPDF}
+                          style={{ width: 50, height: 50 }}
+                        />
+                        <Card.Text>{item.name}</Card.Text>
+                      </Button>
+                      <Button variant="danger">Eliminar</Button>
+                    </Card>
+                  </Col>
+                </Row>
               </div>
             ))}
-        </div>
+        </Stack>
       </div>
     </div>
   );

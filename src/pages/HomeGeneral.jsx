@@ -70,7 +70,7 @@ const HomeGeneral = () => {
         <Stack direction="horizontal" gap={2}>
           <div className="container p-4">
             <div className="row">
-              <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
+              <div className="div-contacto">
                 <h5 className="text-uppercase">Contactanos</h5>
 
                 <p>contacto@legalverse.com.ar</p>
@@ -78,6 +78,11 @@ const HomeGeneral = () => {
                 <p>Buenos Aires, Argentina</p>
               </div>
             </div>
+          </div>
+          <div className="medios-pago">
+            <h6>Medios de pago: </h6>
+
+            <p>Tarjeta de crédito y débito. Visa y MasterCard</p>
           </div>
           <img className="logo1" src={logop1} />
         </Stack>
