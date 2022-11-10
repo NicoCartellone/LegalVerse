@@ -45,7 +45,7 @@ const HomeGeneral = () => {
         </Container>
         <hr style={{ color: "white" }}></hr>
         <h1 className="services-title">Servicios</h1>
-        <Container className="aboutServices">
+        <Container className="aboutServices d-flex justify-content-center">
           <div className="service-desc">
             <h1>Suscripción mensual</h1>
 
@@ -66,7 +66,7 @@ const HomeGeneral = () => {
           </div>
         </Container>
       </div>
-      <footer className="bg-light text-center text-lg-start">
+      <footer className="d-flex justify-content-center">
         <Stack direction="horizontal" gap={2}>
           <div className="container p-4">
             <div className="row">
@@ -86,7 +86,6 @@ const HomeGeneral = () => {
           </div>
           <img className="logo1" src={logop1} />
         </Stack>
-        <div className="text-center p-3">© 2022 Copyright</div>
       </footer>
     </>
   );

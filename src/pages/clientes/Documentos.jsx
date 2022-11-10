@@ -1,4 +1,10 @@
-import { uploadBytes, ref, listAll, getDownloadURL } from "firebase/storage";
+import {
+  uploadBytes,
+  ref,
+  listAll,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
 import { useRef, useState, useEffect } from "react";
 import { storage, auth } from "../../firebase";
 import "../styles/documentos.css";
@@ -19,19 +25,6 @@ const Documentos = () => {
 
   const [getData, setGetData] = useState(true);
   const [dataPdf, setDataPdf] = useState([]);
-  const [filteredName, setFilteredName] = useState([]);
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  // const resultado = dataPdf.filter(
-  //   (data) => data.name === "Trabajo Práctico Integrador.pdf"
-  // );
-  // resultado.map((item) => {
-  //   console.log(item.name);
-  // });
 
   useEffect(() => {
     if (getData) {
@@ -72,19 +65,11 @@ const Documentos = () => {
     window.open(url, "_blank");
   };
 
-  // const searchFilter = (values) => {
-  //   if (values) {
-  //     const newData = dataPdf.filter((item) => {
-  //       const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
-  //       const textData = values.search.toUpperCase();
-  //       return itemData.indexOf(textData);
-  //     });
-  //     setFilteredName(newData);
-  //     setSearch(text);
-  //   } else {
-  //     setFilteredName(dataPdf);
-  //   }
-  // };
+  const deleteDoc = async (name) => {
+    const docRef = ref(storage, `files/${auth.currentUser.uid}/${name}`);
+    await deleteObject(docRef);
+    setGetData(true);
+  };
 
   return (
     <div>
@@ -120,24 +105,29 @@ const Documentos = () => {
               isValid,
               errors,
             }) => (
-              <input
-                type="text"
-                name="search"
-                placeholder="Buscar entre tus documentos"
-                value={values.search}
-                onChange={handleChange("search")}
-                onBlur={handleBlur("search")}
-              />
+              <>
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Buscar entre tus documentos"
+                  value={values.search}
+                  onChange={handleChange("search")}
+                  onBlur={handleBlur("search")}
+                />
+                <button type="submit" className="btn-buscar">
+                  {" "}
+                  Buscar{" "}
+                </button>
+              </>
             )}
           </Formik>
-          <button className="btn-buscar"> Buscar </button>
         </Stack>
         <Stack
           direction="horizontal"
           gap={5}
           className="d-flex justify-content-center p-5"
         >
-          {dataPdf.length &&
+          {dataPdf.length ? (
             !getData &&
             dataPdf.map((item, i) => (
               <div key={i}>
@@ -155,12 +145,20 @@ const Documentos = () => {
                         />
                         <Card.Text>{item.name}</Card.Text>
                       </Button>
-                      <Button variant="danger">Eliminar</Button>
+                      <Button
+                        variant="danger"
+                        onClick={() => deleteDoc(item.name)}
+                      >
+                        Eliminar
+                      </Button>
                     </Card>
                   </Col>
                 </Row>
               </div>
-            ))}
+            ))
+          ) : (
+            <h1>No hay datos</h1>
+          )}
         </Stack>
       </div>
     </div>
