@@ -9,7 +9,7 @@ const PantallaPrincipal = () => {
         <div className="d-flex justify-content-center">
           <Stack direction="horizontal" gap={2}>
             <div className="cardContainerHome">
-              <h1 className="h1 text-light">
+              <h1 >
                 El mundo de las leyes, reinventado
               </h1>
             </div>
