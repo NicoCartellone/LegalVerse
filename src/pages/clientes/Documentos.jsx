@@ -18,8 +18,6 @@ import Row from "react-bootstrap/Row";
 
 import { Formik } from "formik";
 
-import Modal from "react-bootstrap/Modal";
-
 const Documentos = () => {
   const fileRef = useRef();
 

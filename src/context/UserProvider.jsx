@@ -95,7 +95,6 @@ export const UserContext = createContext();
 
 const getUserDocument = async (user) => {
   if (!user.uid) return null;
-
   try {
     const docRef = doc(db, "users", user.uid);
     const userDocument = await getDoc(docRef).then((doc) => {

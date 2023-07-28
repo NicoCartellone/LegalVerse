@@ -1,9 +1,9 @@
 import "../styles/firmaDigital.css";
 import Toast from "react-bootstrap/Toast";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import withAuth from "../../utils/withAuth";
 
-import { uploadBytes, ref, listAll, getDownloadURL } from "firebase/storage";
+import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage, auth } from "../../firebase";
 
 import imgPDF from "../../assets/pdf.png";
@@ -79,8 +79,7 @@ const FirmaDigital = () => {
           gap={5}
           className="d-flex justify-content-center p-5"
         >
-          {dataPdf.length &&
-            !getData &&
+          {dataPdf.length && !getData ? (
             dataPdf.map((item, i) => (
               <div key={i}>
                 <Row xs={1} md={2} className="g-1">
@@ -102,7 +101,10 @@ const FirmaDigital = () => {
                   </Col>
                 </Row>
               </div>
-            ))}
+            ))
+          ) : (
+            <div>Todavia no tienes archivos subidos</div>
+          )}
         </Stack>
       </div>
     </div>

@@ -4,16 +4,16 @@ import { getFirestore } from 'firebase/firestore/lite'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB571TgEjCzWSH_ckTIRO5Mrosm9FzVzSI",
-    authDomain: "legalverseconti.firebaseapp.com",
-    projectId: "legalverseconti",
-    storageBucket: "legalverseconti.appspot.com",
-    messagingSenderId: "728603560311",
-    appId: "1:728603560311:web:5b1f88fc0e16c2d1ccf972"
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+    appId: import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app); 
+export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
